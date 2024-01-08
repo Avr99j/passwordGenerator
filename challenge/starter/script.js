@@ -92,9 +92,7 @@ let pwdLength;
 let lower;
 let upper;
 let special;
-let password;
-
-
+let password = new Array(pwdLength);
 
 // let lowerCharLength = Math.floor(Math.random() * (lowerCasedCharacters.length))
 // console.log(lowerCharLength)
@@ -134,17 +132,18 @@ function getPasswordOptions() {
   do {
     pwdLength = prompt("Please enter the desired length of the password");
 
-    if (length === null) {
+    if (pwdLength === null) {
       alert("Please enter an input");
     }
-    else if ((length < 8) || (length > 128)) {
+    else if ((pwdLength < 8) || (pwdLength > 128)) {
       alert("Please enter length between 8 and 128 characters")
     }
-  } while ((length < 8) || (length > 128));
+  } while ((pwdLength < 8) || (pwdLength > 128));
 
   lower = confirm("Would you like your password to contain lowercase characters?");
   upper = confirm("Would you like your password to contain uppercase characters?");
   special = confirm("Would you like your password to contain special characters?");
+  numbers = confirm("Would you like your password to contain numbers?");
 
   return pwdLength, lower, upper, special;
 }
@@ -157,6 +156,17 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+  getPasswordOptions();
+  let lowerChar = getRandom(lowerCasedCharacters);
+  let upperChar = getRandom(upperCasedCharacters);
+  let specialChar = getRandom(specialCharacters);
+  let numChar = getRandom(numericCharacters);
+
+  for (let i = 0; i < pwdLength; i++) {
+
+    password += lowerChar + upperChar;
+  }
+  console.log(password)
 
 }
 
