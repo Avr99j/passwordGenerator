@@ -88,18 +88,85 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+let pwdLength;
+let lower;
+let upper;
+let special;
+let password = new Array(pwdLength);
+
+// let lowerCharLength = Math.floor(Math.random() * (lowerCasedCharacters.length))
+// console.log(lowerCharLength)
+
+// do {
+
+//   length = prompt("Please enter the desired length of the password");
+
+//   if (length === null) {
+//     alert("Operation cancelled by user");
+//     break;
+//   }
+
+//   if ((length < 8) || (length > 128)) {
+//     alert("The length should be between 8 and 128 characters");
+//   }
+
+// } while ((length < 8) || (length > 128));
+
+// lower = confirm("Would you like your password to contain lowercase characters?");
+
+// if (lower === true) {
+//   var lowerChar = lowerCasedCharacters[Math.floor(Math.random() * (lowerCasedCharacters.length))];
+//   return lowerChar.concat(password);
+// }
+// upper = confirm("Would you like your password to contain uppercase characters?")
+
+// if (upper === true) {
+//   var upperChar = upperCasedCharacters[Math.floor(Math.random() * (upperCasedCharacters.length))];
+// }
+
+// special = confirm("Would you like your password to contain special characters?")
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
+  do {
+    pwdLength = prompt("Please enter the desired length of the password");
+
+    if (pwdLength === null) {
+      alert("Please enter an input");
+    }
+    else if ((pwdLength < 8) || (pwdLength > 128)) {
+      alert("Please enter length between 8 and 128 characters")
+    }
+  } while ((pwdLength < 8) || (pwdLength > 128));
+
+  lower = confirm("Would you like your password to contain lowercase characters?");
+  upper = confirm("Would you like your password to contain uppercase characters?");
+  special = confirm("Would you like your password to contain special characters?");
+  numbers = confirm("Would you like your password to contain numbers?");
+
+  return pwdLength, lower, upper, special;
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  let arrRandom = arr[Math.floor(Math.random() * (arr.length))];
+  return arrRandom;
 }
 
 // Function to generate password with user input
 function generatePassword() {
+  getPasswordOptions();
+  let lowerChar = getRandom(lowerCasedCharacters);
+  let upperChar = getRandom(upperCasedCharacters);
+  let specialChar = getRandom(specialCharacters);
+  let numChar = getRandom(numericCharacters);
+
+  for (let i = 0; i < pwdLength; i++) {
+
+    password += lowerChar + upperChar;
+  }
+  console.log(password)
 
 }
 
@@ -115,16 +182,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
 
-
-//Present a series of prompts for password criteria
-//* Length of password
-let length = prompt("Please enter the desired length of the password")
-  //* At least 8 characters but no more than 128.
-  //* Character types
-  * Lowercase
-  * Uppercase
-  * Numeric
-  * Special characters ($@%&*, etc)
-  //* Code should validate for each input and at least one character type should be selected
-  //* Once prompts are answered then the password should be generated and displayed in an alert or written to the page
