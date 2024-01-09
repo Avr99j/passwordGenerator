@@ -2,7 +2,7 @@
 
 This simple password generator allows users to create passwords based on their preferences for length and character types.
 
-[Screenshot Placeholder](screenshot.png)
+[Screenshot](screenshot.png)
 
 ![PasswordGenerator](https://github.com/Avr99j/passwordGenerator/assets/71075582/6d2c5d80-85f0-4b21-9930-17e0adb51935)
 
